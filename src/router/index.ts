@@ -4,8 +4,8 @@ import QuizView from '@/views/QuizView.vue'
 import SummaryView from '@/views/SummaryView.vue'
 
 const routes = [
-  { path: '/quiz', component: QuizView },
-  { path: '/summary', component: SummaryView },
+  { path: '/quiz', component: QuizView, name: 'Quiz' },
+  { path: '/summary', component: SummaryView, name: 'Summary' },
   { path: '/', redirect: '/quiz' }
 ]
 
