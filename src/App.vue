@@ -1,12 +1,13 @@
 <script setup lang="ts"></script>
 
 <template>
-  <h1>Quiz</h1>
+  <h1 class="font-bold text-5xl text-center text-indigo-700">Quiz</h1>
+  <div class="text-red-500 text-4xl font-bold">TAILWIND TEST</div>
   <p><strong>Current route path:</strong> {{ $route.fullPath }}</p>
-  <nav>
+  <!-- <nav>
     <RouterLink to="/quiz">Go to Quiz</RouterLink>
     <RouterLink to="/summary">Go to Summary</RouterLink>
-  </nav>
+  </nav> -->
   <main>
     <RouterView />
   </main>

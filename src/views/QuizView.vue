@@ -1,5 +1,6 @@
 <template>
-  <div class="max-w-xl mx-auto mt-10">
+  <div class="min-h-screen flex justify-center pt-20 px-4 bg-red">
+    <!-- <div class="w-full max-w-2xl"> -->
     <!-- Loading -->
     <div v-if="quiz.loading" class="text-center text-lg">
       Loading questions...
@@ -21,13 +22,15 @@
       <p class="text-gray-600 mb-4">
         Question {{ quiz.currentIndex + 1 }} of {{ quiz.questions.length }}
       </p>
-
-      <QuestionCard
-        :question="currentQuestion.question"
-        :answers="currentQuestion.all_answers"
-        @selected="handleAnswer"
-      />
+      <div class="bg-white rounded-xl shadow p-6">
+        <QuestionCard
+          :question="currentQuestion.question"
+          :answers="currentQuestion.all_answers"
+          @selected="handleAnswer"
+        />
+      </div>
     </div>
+    <!-- </div> -->
   </div>
 </template>
 

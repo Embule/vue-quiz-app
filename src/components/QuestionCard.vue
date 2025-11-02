@@ -1,16 +1,31 @@
 <template>
-  <div class="p-6 rounded-xl shadow bg-white space-y-6">
-    <!-- Question text -->
-    <h2 class="text-xl font-semibold" v-html="question"></h2>
+  <div class="bg-white p-12 rounded-lg shadow-lg w-full mt-8 space-y-6">
+    <!-- Question -->
+    <h2
+      class="text-2xl font-bold tracking-tight text-gray-800"
+      v-html="question"
+    ></h2>
 
-    <!-- Answer options -->
+    <!-- Answers -->
     <div class="flex flex-col gap-3">
       <button
-        v-for="(answer, index) in answers"
-        :key="index"
-        class="border rounded-lg px-4 py-2 text-left hover:bg-gray-100 focus:outline-none focus:ring"
+        class="block mt-4 border border-gray-300 rounded-lg py-2 px-6 text-lg"
+        v-for="(answer, i) in answers"
+        :key="i"
+        :class="[
+          // 'w-full text-left px-5 py-3 rounded-xl border bg-white shadow-sm',
+          // 'transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg',
+          // 'focus:outline-none focus:ring-2 focus:ring-blue-400',
+
+          // If locked in, highlight correct/incorrect
+          selectedAnswer === answer && isCorrect
+            ? 'animate-correct text-white'
+            : '',
+          selectedAnswer === answer && !isCorrect
+            ? 'animate-incorrect text-white'
+            : '',
+        ]"
         @click="select(answer)"
-        @keydown.enter="select(answer)"
       >
         <span v-html="answer" />
       </button>
@@ -19,25 +34,24 @@
 </template>
 
 <script setup lang="ts">
-import { defineProps, defineEmits } from "vue";
+import { ref, computed } from "vue";
 
 const props = defineProps<{
   question: string;
   answers: string[];
+  correct_answer: string;
 }>();
 
 const emit = defineEmits<{
   (e: "selected", answer: string): void;
 }>();
 
+const selectedAnswer = ref<string | null>(null);
+
 const select = (answer: string) => {
+  selectedAnswer.value = answer;
   emit("selected", answer);
 };
-</script>
 
-<style scoped>
-/* Optional: improve focus states */
-button:focus {
-  outline: 2px solid #2563eb; /* blue-600 */
-}
-</style>
+const isCorrect = computed(() => selectedAnswer.value === props.correct_answer);
+</script>

@@ -1,6 +1,6 @@
 <template>
   <div class="max-w-2xl mx-auto mt-10 space-y-8">
-    <h1 class="text-3xl font-bold text-center">Quiz Summary</h1>
+    <h2 class="text-3xl font-bold text-center">Summary</h2>
 
     <!-- Score -->
     <div class="text-center">
@@ -24,7 +24,7 @@
 
         <!-- User Answer -->
         <p>
-          <span class="font-medium">Your answer:</span>
+          <span class="font-medium">Your answer: </span>
           <span
             :class="{
               'text-green-600 font-semibold': isCorrect(index),
@@ -36,7 +36,7 @@
 
         <!-- Correct Answer -->
         <p class="mt-1">
-          <span class="font-medium">Correct answer:</span>
+          <span class="font-medium">Correct answer: </span>
           <span v-html="q.correct_answer"></span>
         </p>
       </div>
@@ -46,7 +46,7 @@
     <div class="text-center">
       <button
         @click="playAgain"
-        class="px-6 py-3 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700"
+        class="px-12 py-3 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700"
       >
         Play Again
       </button>
