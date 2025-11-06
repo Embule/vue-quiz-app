@@ -5,10 +5,10 @@ export interface TriviaQuestion {
   all_answers: string[]; // after shuffling
 }
 
-export interface TriviaAPIResponse {
-  results: {
-    question: string;
-    correct_answer: string;
-    incorrect_answers: string[];
-  }[];
-}
+// export interface TriviaAPIResponse {
+//   results: {
+//     question: string;
+//     correct_answer: string;
+//     incorrect_answers: string[];
+//   }[];
+// }

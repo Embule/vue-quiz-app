@@ -9,7 +9,7 @@
     <!-- Answers -->
     <div class="flex flex-col gap-3">
       <button
-        class="block mt-4 border border-gray-300 rounded-lg py-2 px-6 text-lg"
+        class="block mt-4 hover:bg-gray-300 border border-gray-300 rounded-lg py-2 px-6 text-lg"
         v-for="(answer, i) in answers"
         :key="i"
         :class="[

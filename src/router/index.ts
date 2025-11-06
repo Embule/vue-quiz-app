@@ -1,4 +1,4 @@
-import { createRouter, createMemoryHistory } from 'vue-router'
+import { createRouter, createWebHistory } from 'vue-router'
 
 import QuizView from '@/views/QuizView.vue'
 import SummaryView from '@/views/SummaryView.vue'
@@ -10,7 +10,7 @@ const routes = [
 ]
 
 const router = createRouter({
-  history: createMemoryHistory(),
+  history: createWebHistory(),
   routes: routes,
 })
 

@@ -1,8 +1,7 @@
 <script setup lang="ts"></script>
 
 <template>
-  <h1 class="font-bold text-5xl text-center text-indigo-700">Quiz</h1>
-  <p><strong>Current route path:</strong> {{ $route.fullPath }}</p>
+  <h1 class="pt-8 font-bold text-5xl text-center text-indigo-700">Quiz</h1>
   <!-- <nav>
     <RouterLink to="/quiz">Go to Quiz</RouterLink>
     <RouterLink to="/summary">Go to Summary</RouterLink>

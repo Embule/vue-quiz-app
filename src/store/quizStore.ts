@@ -8,10 +8,15 @@ export const useQuizStore = defineStore("quiz", {
     questions: [] as TriviaQuestion[],
     answers: [] as string[],
     currentIndex: 0,
+    loading: false,
+    error: '' as string,
   }),
 
   actions: {
     async fetchQuestions() {
+      this.loading = true;
+      this.error = '';
+
       try {
         const { shuffle } = useShuffle()
         const res = await axios.get(
@@ -34,8 +39,11 @@ export const useQuizStore = defineStore("quiz", {
 
         this.answers = [];
         this.currentIndex = 0;
-      } catch (error) {
+      } catch (error: any) {
+        this.error = error.message || 'Failed to fetch questions'
         console.error('Failed to fetch questions: ', error)
+      } finally {
+        this.loading = false
       }
     },
 

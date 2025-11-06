@@ -1,5 +1,5 @@
 <template>
-  <div class="max-w-2xl mx-auto mt-10 space-y-8">
+  <div class="max-w-2xl mx-auto pb-20 mt-10 space-y-8">
     <h2 class="text-3xl font-bold text-center">Summary</h2>
 
     <!-- Score -->
@@ -65,13 +65,13 @@ const router = useRouter();
 // Compute the total score
 const score = computed(
   () =>
-    quiz.answers.filter((ans, i) => ans === quiz.questions[i].correct_answer)
+    quiz.answers.filter((ans, i) => ans === quiz.questions[i]?.correct_answer)
       .length
 );
 
 // Correctness check
 const isCorrect = (index: number) =>
-  quiz.answers[index] === quiz.questions[index].correct_answer;
+  quiz.answers[index] === quiz.questions[index]?.correct_answer;
 
 // Reset the quiz and start again
 const playAgain = () => {
