@@ -5,7 +5,7 @@
     <div class="w-full max-w-2xl">
       <!-- Loading -->
       <div v-if="quiz.loading" class="text-center text-lg">
-        Loading questions...
+        <Spinner />
       </div>
 
       <!-- Error -->
@@ -19,9 +19,10 @@
           Retry
         </button>
       </div>
-
       <!-- Question -->
       <div v-else-if="currentQuestion">
+        <!-- Progress Bar -->
+        <ProgressBar :progress="progress" />
         <p class="text-gray-600 mb-4">
           Question {{ quiz.currentIndex + 1 }} of {{ quiz.questions.length }}
         </p>
@@ -40,6 +41,8 @@
 import { computed, onMounted } from "vue";
 import { useQuizStore } from "@/store/quizStore";
 import QuestionCard from "@/components/QuestionCard.vue";
+import Spinner from "@/components/Spinner.vue";
+import ProgressBar from "@/components/ProgressBar.vue";
 import { useRouter } from "vue-router";
 
 const quiz = useQuizStore();
@@ -55,10 +58,18 @@ onMounted(() => {
 
 const currentQuestion = computed(() => quiz.questions[quiz.currentIndex]);
 
+const progress = computed(() => {
+  if (quiz.questions.length === 0) return 0;
+
+  // Use +1 so it never reaches 100% before summary
+  return ((quiz.currentIndex + 1) / quiz.questions.length) * 100;
+});
+console.log("progress", progress);
+
 const handleAnswer = (answer: string) => {
   quiz.selectAnswer(answer);
 
-  // Finished all questions → go to summary
+  // After finishing all the questions go to summary
   if (quiz.currentIndex >= quiz.questions.length) {
     router.push({ name: "Summary" });
   }
