@@ -22,13 +22,12 @@
       <p class="text-gray-600 mb-4">
         Question {{ quiz.currentIndex + 1 }} of {{ quiz.questions.length }}
       </p>
-      <div class="bg-white rounded-xl shadow p-6">
-        <QuestionCard
-          :question="currentQuestion.question"
-          :answers="currentQuestion.all_answers"
-          @selected="handleAnswer"
-        />
-      </div>
+      <QuestionCard
+        :question="currentQuestion.question"
+        :answers="currentQuestion.all_answers"
+        :correct_answer="currentQuestion.correct_answer"
+        @selected="handleAnswer"
+      />
     </div>
     <!-- </div> -->
   </div>
