@@ -26,12 +26,15 @@
         <p class="text-gray-600 mb-4">
           Question {{ quiz.currentIndex + 1 }} of {{ quiz.questions.length }}
         </p>
-        <QuestionCard
-          :question="currentQuestion.question"
-          :answers="currentQuestion.all_answers"
-          :correct_answer="currentQuestion.correct_answer"
-          @selected="handleAnswer"
-        />
+        <Transition name="slide-right" mode="out-in">
+          <QuestionCard
+            :key="quiz.currentIndex"
+            :question="currentQuestion.question"
+            :answers="currentQuestion.all_answers"
+            :correct_answer="currentQuestion.correct_answer"
+            @selected="handleAnswer"
+          />
+        </Transition>
       </div>
     </div>
   </div>
@@ -75,3 +78,27 @@ const handleAnswer = (answer: string) => {
   }
 };
 </script>
+
+<style scoped lang="postcss">
+/* Slide right transition for questions */
+.slide-right-enter-active,
+.slide-right-leave-active {
+  @apply transition-all duration-300 ease-out;
+}
+
+.slide-right-enter-from {
+  @apply opacity-0 -translate-x-4; /* start left, invisible */
+}
+
+.slide-right-enter-to {
+  @apply opacity-100 translate-x-0; /* slide to normal position */
+}
+
+.slide-right-leave-from {
+  @apply opacity-100 translate-x-0; /* start at normal */
+}
+
+.slide-right-leave-to {
+  @apply opacity-0 translate-x-4; /* slide to right, invisible */
+}
+</style>

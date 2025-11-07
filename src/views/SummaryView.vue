@@ -6,7 +6,7 @@
     <div class="text-center">
       <p class="text-xl font-semibold">
         You got
-        <span class="text-blue-600">{{ score }}</span>
+        <span class="text-indigo-500">{{ score }}</span>
         /
         {{ quiz.questions.length }} correct
       </p>
@@ -46,7 +46,7 @@
     <div class="text-center">
       <button
         @click="playAgain"
-        class="px-12 py-3 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700"
+        class="px-12 py-3 bg-indigo-600 text-white font-semibold rounded-lg hover:bg-indigo-800 transition-all duration-200 hover:shadow-lg"
       >
         Play Again
       </button>

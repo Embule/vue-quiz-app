@@ -9,13 +9,12 @@
     <!-- Answers -->
     <div class="flex flex-col gap-3">
       <button
-        class="block mt-4 hover:bg-gray-300 border border-gray-300 rounded-lg py-2 px-6 text-lg"
         v-for="(answer, i) in answers"
         :key="i"
         :class="[
-          // 'w-full text-left px-5 py-3 rounded-xl border bg-white shadow-sm',
-          // 'transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg',
-          // 'focus:outline-none focus:ring-2 focus:ring-blue-400',
+          'block mt-4 hover:bg-gray-300 border border-gray-300 rounded-lg py-2 px-6 text-lg',
+          'w-full text-left px-5 py-3 rounded-xl border bg-white shadow-sm',
+          'transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg',
 
           // If locked in, highlight correct/incorrect
           selectedAnswer === answer && isCorrect
