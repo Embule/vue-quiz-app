@@ -6,9 +6,8 @@ A simple quiz application built with **Vue 3**, **Vite**, **Pinia**, and **Tailw
 
 ## Features
 
-- Choose quiz difficulty (easy, medium, hard)
 - Multiple-choice questions from **Open Trivia API**: https://opentdb.com/api.php?
-- Shuffle answers
+- Choose quiz difficulty
 - Progress bar and question transitions
 - Summary with score after completing the quiz
 - Loading spinner and error handling
@@ -20,7 +19,7 @@ A simple quiz application built with **Vue 3**, **Vite**, **Pinia**, and **Tailw
 **Clone the repository and install dependencies**
 
 ```bash
-git clone https://github.com/Embule/quiz-app.git <your-repo-folder>
+git clone https://github.com/Embule/vue-quiz-app.git <your-repo-folder>
 cd <your-repo-folder>
 ```
 
