@@ -1,11 +1,10 @@
-<script setup lang="ts"></script>
-
 <template>
-  <h1>You did it!</h1>
-  <p>
-    Visit <a href="https://vuejs.org/" target="_blank" rel="noopener">vuejs.org</a> to read the
-    documentation
-  </p>
+  <h1 class="pt-8 font-bold text-5xl text-center text-indigo-700">Quiz</h1>
+  <main>
+    <RouterView />
+  </main>
 </template>
+
+<script setup lang="ts"></script>
 
 <style scoped></style>
