@@ -7,7 +7,7 @@ A simple quiz application built with **Vue 3**, **Vite**, **Pinia**, and **Tailw
 ## Features
 
 - Choose quiz difficulty (easy, medium, hard)
-- Multiple-choice questions from [Open Trivia API](https://opentdb.com/api.php?)
+- Multiple-choice questions from **Open Trivia API**: https://opentdb.com/api.php?
 - Shuffle answers
 - Progress bar and question transitions
 - Summary with score after completing the quiz
