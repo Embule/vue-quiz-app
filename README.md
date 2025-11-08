@@ -1,13 +1,13 @@
 # Quiz App
 
-A simple quiz application built with **Vue 3**, **Vite**, **Pinia**, and **Tailwind CSS**. Users can choose the difficulty, answer multiple-choice questions, and see a summary of the quiz and correct answers at the end.
+A simple quiz application built with **Vue 3**, **Vite**, **Pinia**, and **Tailwind CSS**. Users can choose the difficulty, answer multiple-choice questions, and see a summary of the quiz after completing the quiz.
 
 ---
 
 ## Features
 
 - Choose quiz difficulty (easy, medium, hard)
-- Multiple-choice questions from Open Trivia API: https://opentdb.com/api.php?
+- Multiple-choice questions from [Open Trivia API](https://opentdb.com/api.php?)
 - Shuffle answers
 - Progress bar and question transitions
 - Summary with score after completing the quiz
