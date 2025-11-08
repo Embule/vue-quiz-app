@@ -1,4 +1,3 @@
-<!-- src/components/ProgressBar.vue -->
 <template>
   <div class="w-full bg-gray-200 rounded-full h-3">
     <div

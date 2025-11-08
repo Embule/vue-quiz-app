@@ -49,8 +49,6 @@ import ProgressBar from "@/components/ProgressBar.vue";
 import { useRouter } from "vue-router";
 
 const quiz = useQuizStore();
-console.log("quizstore", quiz);
-
 const router = useRouter();
 
 onMounted(() => {
@@ -61,18 +59,19 @@ onMounted(() => {
 
 const currentQuestion = computed(() => quiz.questions[quiz.currentIndex]);
 
+/*
+  Progress bar percentage: 
+  Use currentIndex +1 so it never reaches 100% before summary
+*/
 const progress = computed(() => {
   if (quiz.questions.length === 0) return 0;
 
-  // Use +1 so it never reaches 100% before summary
   return ((quiz.currentIndex + 1) / quiz.questions.length) * 100;
 });
-console.log("progress", progress);
 
 const handleAnswer = (answer: string) => {
   quiz.selectAnswer(answer);
 
-  // After finishing all the questions go to summary
   if (quiz.currentIndex >= quiz.questions.length) {
     router.push({ name: "Summary" });
   }
@@ -87,18 +86,18 @@ const handleAnswer = (answer: string) => {
 }
 
 .slide-right-enter-from {
-  @apply opacity-0 -translate-x-4; /* start left, invisible */
+  @apply opacity-0 -translate-x-4;
 }
 
 .slide-right-enter-to {
-  @apply opacity-100 translate-x-0; /* slide to normal position */
+  @apply opacity-100 translate-x-0;
 }
 
 .slide-right-leave-from {
-  @apply opacity-100 translate-x-0; /* start at normal */
+  @apply opacity-100 translate-x-0;
 }
 
 .slide-right-leave-to {
-  @apply opacity-0 translate-x-4; /* slide to right, invisible */
+  @apply opacity-0 translate-x-4;
 }
 </style>

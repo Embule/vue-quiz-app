@@ -17,7 +17,7 @@ const router = createRouter({
   routes: routes,
 })
 
-// Navigation guard
+// Router guard
 router.beforeEach((to, from) => {
   const quiz = useQuizStore();
 

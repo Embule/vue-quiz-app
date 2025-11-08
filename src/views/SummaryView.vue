@@ -69,11 +69,10 @@ const score = computed(
       .length
 );
 
-// Correctness check
+// Correctness check used to indicate the color
 const isCorrect = (index: number) =>
   quiz.answers[index] === quiz.questions[index]?.correct_answer;
 
-// Reset the quiz and start again
 const playAgain = () => {
   quiz.resetQuiz();
   router.push({ name: "Start" });

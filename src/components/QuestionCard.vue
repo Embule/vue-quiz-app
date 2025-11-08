@@ -9,20 +9,13 @@
     <!-- Answers -->
     <div class="flex flex-col gap-3">
       <button
+        class="block mt-4 hover:bg-gray-300 border border-gray-300 rounded-lg py-2 px-6 text-lg"
         v-for="(answer, i) in answers"
         :key="i"
         :class="[
           'block mt-4 hover:bg-gray-300 border border-gray-300 rounded-lg py-2 px-6 text-lg',
           'w-full text-left px-5 py-3 rounded-xl border bg-white shadow-sm',
           'transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg',
-
-          // If locked in, highlight correct/incorrect
-          selectedAnswer === answer && isCorrect
-            ? 'animate-correct text-white'
-            : '',
-          selectedAnswer === answer && !isCorrect
-            ? 'animate-incorrect text-white'
-            : '',
         ]"
         @click="select(answer)"
       >
@@ -33,7 +26,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed } from "vue";
+import { ref } from "vue";
 
 const props = defineProps<{
   question: string;
@@ -47,10 +40,9 @@ const emit = defineEmits<{
 
 const selectedAnswer = ref<string | null>(null);
 
+// Emit the selected answer to the parent component
 const select = (answer: string) => {
   selectedAnswer.value = answer;
   emit("selected", answer);
 };
-
-const isCorrect = computed(() => selectedAnswer.value === props.correct_answer);
 </script>
