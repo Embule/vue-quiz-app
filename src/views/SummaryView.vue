@@ -76,6 +76,6 @@ const isCorrect = (index: number) =>
 // Reset the quiz and start again
 const playAgain = () => {
   quiz.resetQuiz();
-  router.push({ name: "Quiz" });
+  router.push({ name: "Start" });
 };
 </script>

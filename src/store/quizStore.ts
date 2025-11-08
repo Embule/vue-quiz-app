@@ -10,6 +10,7 @@ export const useQuizStore = defineStore("quiz", {
     currentIndex: 0,
     loading: false,
     error: '' as string,
+    difficulty: 'easy' as 'easy' | 'medium' | 'hard' | '',
   }),
 
   actions: {
@@ -19,9 +20,13 @@ export const useQuizStore = defineStore("quiz", {
 
       try {
         const { shuffle } = useShuffle()
-        const res = await axios.get(
-          "https://opentdb.com/api.php?amount=5&type=multiple"
-        );
+
+        // ✅ Build API URL based on difficulty
+        const url = this.difficulty
+          ? `https://opentdb.com/api.php?amount=5&type=multiple&difficulty=${this.difficulty}`
+          : `https://opentdb.com/api.php?amount=5&type=multiple`;
+
+        const res = await axios.get(url);
         const data = res.data;
 
         this.questions = data.results.map((q: any) => {
@@ -33,6 +38,7 @@ export const useQuizStore = defineStore("quiz", {
             correct_answer: q.correct_answer,
             incorrect_answers: q.incorrect_answers,
             all_answers: shuffled,
+            difficulty: q.difficulty,
           };
         });
         console.log('data', data)
