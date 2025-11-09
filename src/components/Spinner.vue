@@ -6,5 +6,3 @@
     <p class="px-2 mt-2">Loading questions...</p>
   </div>
 </template>
-
-<script setup lang="ts"></script>

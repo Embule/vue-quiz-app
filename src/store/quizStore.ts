@@ -37,8 +37,10 @@ export const useQuizStore = defineStore("quiz", {
         const res = await axios.get(url);
         const data = res.data;
 
-        // Transform raw API questions into internal format; 
-        // Shuffle answer order using Fisher-Yates composable function
+        /*
+          Transform raw API questions into internal format; 
+          Shuffle answer order using Fisher-Yates composable function
+        */
         this.questions = data.results.map((q: any) => {
           const all = [...q.incorrect_answers, q.correct_answer];
           const shuffled = shuffle(all)
@@ -63,17 +65,13 @@ export const useQuizStore = defineStore("quiz", {
       }
     },
 
-    /*
-      Store the user's selected answer and advance to the next question
-    */
+    //Store the user's selected answer and advance to the next question
     selectAnswer(answer: string) {
       this.answers.push(answer);
       this.currentIndex++;
     },
 
-    /*
-      Reset the entire quiz state.
-    */
+    // Reset the entire quiz state
     resetQuiz() {
       this.answers = [];
       this.currentIndex = 0;

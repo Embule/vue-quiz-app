@@ -43,7 +43,7 @@ import { useQuizStore } from "@/store/quizStore";
 const router = useRouter();
 const quiz = useQuizStore();
 
-// Use as const if you want literal string types instead of generic string.
+// Use as const for literal string types instead of generic string
 const levels = ["easy", "medium", "hard"] as const;
 
 const selectDifficulty = (level: "easy" | "medium" | "hard") => {
