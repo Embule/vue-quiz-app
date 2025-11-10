@@ -4,33 +4,54 @@
       <div class="flex flex-col items-center space-y-6">
         <h2 class="text-3xl font-bold text-center">Start Quiz</h2>
 
-        <p class="text-lg">Choose difficulty:</p>
+        <div class="w-full flex flex-col items-center space-y-6">
+          <!-- Loading -->
+          <div v-if="quiz.loading">
+            <Spinner />
+          </div>
 
-        <!-- Difficulty Buttons -->
-        <div class="flex space-x-4">
-          <button
-            v-for="level in levels"
-            :key="level"
-            @click="selectDifficulty(level)"
-            :class="[
-              'px-6 py-2 font-semibold rounded-lg transition-all duration-300',
-              quiz.difficulty === level
-                ? 'bg-indigo-600 text-white hover:bg-indigo-800'
-                : 'bg-gray-200 text-gray-800 hover:bg-gray-300',
-            ]"
+          <!-- Error -->
+          <div
+            v-else-if="quiz.error"
+            class="text-center text-red-600 space-y-4"
           >
-            {{ level }}
-          </button>
-        </div>
+            <p>{{ quiz.error }}</p>
+            <button
+              @click="startQuiz"
+              class="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-800"
+            >
+              Retry
+            </button>
+          </div>
 
-        <!-- Start Quiz Button -->
-        <button
-          @click="startQuiz"
-          class="px-12 py-3 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-800 transition-all duration-200 hover:shadow-lg"
-          :disabled="quiz.loading"
-        >
-          Start Quiz
-        </button>
+          <!-- Difficulty selection and Start-->
+          <div v-else class="flex flex-col items-center space-y-6">
+            <p class="text-lg">Choose difficulty:</p>
+
+            <div class="flex space-x-4">
+              <button
+                v-for="level in levels"
+                :key="level"
+                @click="selectDifficulty(level)"
+                :class="[
+                  'px-6 py-2 font-semibold rounded-lg transition-all duration-300',
+                  quiz.difficulty === level
+                    ? 'bg-indigo-600 text-white hover:bg-indigo-800'
+                    : 'bg-gray-200 text-gray-800 hover:bg-gray-300',
+                ]"
+              >
+                {{ level }}
+              </button>
+            </div>
+
+            <button
+              @click="startQuiz"
+              class="px-12 py-3 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-800 transition-all duration-200 hover:shadow-lg"
+            >
+              Start Quiz
+            </button>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -39,11 +60,11 @@
 <script setup lang="ts">
 import { useRouter } from "vue-router";
 import { useQuizStore } from "@/store/quizStore";
+import Spinner from "@/components/Spinner.vue";
 
 const router = useRouter();
 const quiz = useQuizStore();
 
-// Use as const for literal string types instead of generic string
 const levels = ["easy", "medium", "hard"] as const;
 
 const selectDifficulty = (level: "easy" | "medium" | "hard") => {
@@ -52,6 +73,10 @@ const selectDifficulty = (level: "easy" | "medium" | "hard") => {
 
 const startQuiz = async () => {
   await quiz.fetchQuestions();
-  router.push({ name: "Quiz" });
+
+  // Only navigate if fetch succeeded
+  if (!quiz.error) {
+    router.push({ name: "Quiz" });
+  }
 };
 </script>

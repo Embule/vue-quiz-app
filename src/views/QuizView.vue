@@ -3,24 +3,8 @@
     class="min-h-screen max-w-2xl mx-auto flex justify-center py-20 px-4 bg-red"
   >
     <div class="w-full max-w-2xl">
-      <!-- Loading -->
-      <div v-if="quiz.loading" class="text-center text-lg">
-        <Spinner />
-      </div>
-
-      <!-- Error -->
-      <div v-else-if="quiz.error" class="text-center text-red-600">
-        <p>{{ quiz.error }}</p>
-        <button
-          class="mt-4 px-4 py-2 bg-blue-600 text-white rounded"
-          @click="quiz.fetchQuestions()"
-          :disabled="quiz.loading"
-        >
-          Retry
-        </button>
-      </div>
       <!-- Question -->
-      <div v-else-if="currentQuestion">
+      <div v-if="currentQuestion">
         <!-- Progress Bar -->
         <ProgressBar :progress="progress" />
         <p class="text-gray-600 mb-4">
@@ -44,18 +28,11 @@
 import { computed, onMounted } from "vue";
 import { useQuizStore } from "@/store/quizStore";
 import QuestionCard from "@/components/QuestionCard.vue";
-import Spinner from "@/components/Spinner.vue";
 import ProgressBar from "@/components/ProgressBar.vue";
 import { useRouter } from "vue-router";
 
 const quiz = useQuizStore();
 const router = useRouter();
-
-onMounted(() => {
-  if (quiz.questions.length === 0) {
-    quiz.fetchQuestions();
-  }
-});
 
 const currentQuestion = computed(() => quiz.questions[quiz.currentIndex]);
 
@@ -65,7 +42,6 @@ const currentQuestion = computed(() => quiz.questions[quiz.currentIndex]);
 */
 const progress = computed(() => {
   if (quiz.questions.length === 0) return 0;
-
   return ((quiz.currentIndex + 1) / quiz.questions.length) * 100;
 });
 
